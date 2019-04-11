@@ -20,6 +20,15 @@ const app = () => {
   outline.style.strokeDasharray = outlineLength;
   outline.style.strokeDashoffset = outlineLength;
 
+  //Sounds - Pick a song
+  sounds.forEach(sound => {
+    sound.addEventListener("click", function() {
+      song.src = this.getAttribute("data-sound");
+      video.src = this.getAttribute("data-video");
+      checkPlaying(song);
+    });
+  });
+
   //Sounds - Play
   play.addEventListener("click", () => {
     checkPlaying(song);
@@ -61,6 +70,13 @@ const app = () => {
 
     //Aimating Text
     timeDisplay.textContent = `${minutes}:${seconds}`;
+
+    if (currentTime >= tempDur) {
+      song.pause();
+      song.currentTime = 0;
+      play.src = "./svg/play.svg";
+      video.pause();
+    }
   };
 };
 
