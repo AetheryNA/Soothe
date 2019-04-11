@@ -9,6 +9,7 @@ const app = () => {
 
   //Time display
   const timeDisplay = document.querySelector(".time-display");
+  const timeSelect = document.querySelectorAll(".time-select button");
 
   //Lenfth of the outline
   const outlineLength = outline.getTotalLength();
@@ -22,6 +23,16 @@ const app = () => {
   //Sounds - Play
   play.addEventListener("click", () => {
     checkPlaying(song);
+  });
+
+  //Time selection buttons
+  timeSelect.forEach(option => {
+    option.addEventListener("click", function() {
+      tempDur = this.getAttribute("data-time");
+      timeDisplay.textContent = `${Math.floor(tempDur / 60)}:${Math.floor(
+        tempDur % 60
+      )}`;
+    });
   });
 
   //Stop and play
@@ -47,6 +58,9 @@ const app = () => {
     //Animating the Cirle
     let progress = outlineLength - (currentTime / tempDur) * outlineLength;
     outline.style.strokeDashoffset = progress;
+
+    //Aimating Text
+    timeDisplay.textContent = `${minutes}:${seconds}`;
   };
 };
 
