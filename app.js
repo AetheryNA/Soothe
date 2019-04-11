@@ -43,6 +43,10 @@ const app = () => {
     let elapsed = tempDur - currentTime;
     let seconds = Math.floor(elapsed % 60);
     let minutes = Math.floor(elapsed / 60);
+
+    //Animating the Cirle
+    let progress = outlineLength - (currentTime / tempDur) * outlineLength;
+    outline.style.strokeDashoffset = progress;
   };
 };
 
